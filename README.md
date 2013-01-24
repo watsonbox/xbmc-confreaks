@@ -4,9 +4,12 @@
 
 ## Usage
 
-Just download a release from `releases`, and use 'Install from zip file' in XBMC -> System -> Addons.
+Just download a release from `release`, and use 'Install from zip file' in XBMC -> System -> Addons.
 
-Please note that this addon has only been tested with XBMC 11.0 Eden.
+## Notes
+
+- This addon has been tested with XBMC Frodo Release Candidate 3
+- Currently the following Confreaks video formats are supported: downloadable files, YouTube, and Vimeo. Please raise an issue if new formats are added and I'll do my best to add support for them.
 
 ## Acknowledgements
 
