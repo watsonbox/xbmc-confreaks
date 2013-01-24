@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import re
 from xbmcswift2 import Plugin
 from xbmcswift2 import download_page
 from BeautifulSoup import BeautifulSoup as BS
@@ -40,13 +41,40 @@ def show_presentations(conference):
 @plugin.route('/presentations/<presentation>/')
 def show_videos(presentation):
   html = htmlify(full_url('videos/' + presentation))
+
+  # Try linked video files
   events = html.find('div', { 'class': 'video-details' }).findAll('a')
 
-  return [{
-    'label': event.string.strip(),
-    'path': event['href'],
-    'is_playable': True
-  } for event in events]
+  if events:
+    return [{
+      'label': event.string.strip(),
+      'path': event['href'],
+      'is_playable': True
+    } for event in events]
+
+  # Try Vimeo source
+  iframe_src = html.find('div', { 'class': 'video-frame' }).find('iframe')['src']
+  vimeo_match = re.search(r'.*player\.vimeo\.com/video/(\d+).*', iframe_src)
+
+  if vimeo_match:
+    return [{
+      'label': 'Vimeo Video',
+      'path': 'plugin://plugin.video.vimeo/?action=play_video&videoid=' + vimeo_match.group(1),
+      'is_playable': True
+    }]
+
+  # Try YouTube source
+  youtube_match = re.search(r'.*youtube\.com/embed/(.+)$', iframe_src)
+
+  if youtube_match:
+    return [{
+      'label': 'YouTube Video',
+      'path': 'plugin://plugin.video.youtube/?action=play_video&videoid=' + youtube_match.group(1),
+      'is_playable': True
+    }]
+
+  # No videos could be found
+  return []
 
 
 if __name__ == '__main__':
