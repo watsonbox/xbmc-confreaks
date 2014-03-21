@@ -2,13 +2,9 @@
 
 [Confreaks](http://www.confreaks.com) is a great resource for watching Ruby presentations from conferences around the world; [XBMC](http://www.xbmc.org) is a powerful media player which you can use to enjoy them from the comfort of you sofa.
 
-## Usage
-
-Just download a release from `release`, and use 'Install from zip file' in XBMC -> System -> Addons.
-
 ## Notes
 
-- This addon has been tested with XBMC Frodo Release Candidate 3
+- This addon has been tested with XBMC Frodo and Gotham Beta 2
 - Currently the following Confreaks video formats are supported: downloadable files, YouTube, and Vimeo. Please raise an issue if new formats are added and I'll do my best to add support for them.
 
 ## Acknowledgements
