@@ -1,5 +1,7 @@
 # xbmc-confreaks
 
+[![Build Status](https://travis-ci.org/watsonbox/xbmc-confreaks.svg?branch=master)](https://travis-ci.org/watsonbox/xbmc-confreaks)
+
 [Confreaks](http://www.confreaks.com) is a great resource for watching Ruby presentations from conferences around the world; [XBMC](http://www.xbmc.org) is a powerful media player which you can use to enjoy them from the comfort of you sofa.
 
 ## Notes
