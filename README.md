@@ -6,6 +6,7 @@
 
 ## Notes
 
+- The Vimeo addon (3.5.4) for XBMC is not currently working. For the time being I found that the modified addon in this post fixed things: http://forum.xbmc.org/showthread.php?tid=81052&pid=1782988#pid1782988.
 - This addon has been tested with XBMC Frodo and Gotham Beta 2
 - Currently the following Confreaks video formats are supported: downloadable files, YouTube, and Vimeo. Please raise an issue if new formats are added and I'll do my best to add support for them.
 
