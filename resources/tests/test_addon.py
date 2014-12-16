@@ -16,7 +16,7 @@ class IntegrationTests(unittest.TestCase):
 
     # The first is 'You gotta try this'
     self.assertEqual(items[0], {
-      'label': 'You gotta try this [COLOR mediumslateblue]Avdi Grimm[/COLOR]',
+      'label': 'You gotta try this  [COLOR mediumslateblue]Avdi Grimm[/COLOR]',
       'path': 'plugin://plugin.video.confreaks/presentations/2701-arrrrcamp2013-you-gotta-try-this/'
     })
 
@@ -80,7 +80,7 @@ class IntegrationTests(unittest.TestCase):
 
     # Ensure RubyConf 2014 data is correct
     self.assertEqual(rubyConf2014, {
-      'label': 'Ruby Conference 2014 ([COLOR mediumslateblue]Nov 16 - 18, 2014[/COLOR])',
+      'label': 'Ruby Conference 2014  [COLOR mediumslateblue]Nov 16 - 18, 2014[/COLOR]',
       'path': 'plugin://plugin.video.confreaks/conferences/RubyConf2014/',
       'icon': 'http://cdn.confreaks.com/system/events/logos/225/rubyconf-website-small-medium.png?1417537525',
     })
