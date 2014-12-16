@@ -16,7 +16,7 @@ class IntegrationTests(unittest.TestCase):
 
     # The first is 'You gotta try this'
     self.assertEqual(items[0], {
-      'label': 'You gotta try this',
+      'label': 'You gotta try this [COLOR mediumslateblue]Avdi Grimm[/COLOR]',
       'path': 'plugin://plugin.video.confreaks/presentations/2701-arrrrcamp2013-you-gotta-try-this/'
     })
 
