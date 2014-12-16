@@ -81,7 +81,8 @@ class IntegrationTests(unittest.TestCase):
     # Ensure RubyConf 2014 data is correct
     self.assertEqual(rubyConf2014, {
       'label': 'Ruby Conference 2014 ([COLOR mediumslateblue]Nov 16 - 18, 2014[/COLOR])',
-      'path': 'plugin://plugin.video.confreaks/conferences/RubyConf2014/'
+      'path': 'plugin://plugin.video.confreaks/conferences/RubyConf2014/',
+      'icon': 'http://cdn.confreaks.com/system/events/logos/225/rubyconf-website-small-medium.png?1417537525',
     })
 
 

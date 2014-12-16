@@ -24,6 +24,7 @@ def index():
   return [{
     'label': event_links[0].string.strip() + ' ([COLOR mediumslateblue]' + event_links[2].string.strip() + '[/COLOR])',
     'path': plugin.url_for('show_presentations', conference=event_links[0]['href'][event_links[0]['href'].rfind('/')+1:]),
+    'icon': event_links[1].findAll('img')[0]['src'],
   } for event_links in events]
 
 
