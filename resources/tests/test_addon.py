@@ -73,7 +73,16 @@ class IntegrationTests(unittest.TestCase):
 
   def test_index(self):
     items = index()
+    rubyConf2014 = [i for i in items if i['path'] == "plugin://plugin.video.confreaks/conferences/RubyConf2014/"][0]
+
+    # There should be more than 150 events
     self.assertTrue(len(items) > 150)
+
+    # Ensure RubyConf 2014 data is correct
+    self.assertEqual(rubyConf2014, {
+      'label': 'Ruby Conference 2014 ([COLOR mediumslateblue]Nov 16 - 18, 2014[/COLOR])',
+      'path': 'plugin://plugin.video.confreaks/conferences/RubyConf2014/'
+    })
 
 
 if __name__ == '__main__':
