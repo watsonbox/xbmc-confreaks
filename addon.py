@@ -13,19 +13,22 @@ def htmlify(url):
   return BS(download_page(url))
 
 def full_url(path):
-  return 'http://www.confreaks.com/' + path
+  return 'http://www.confreaks.tv/' + path
 
 
 @plugin.route('/')
 def index():
   html = htmlify(full_url('events'))
-  events = [event.findAll('a') for event in html.findAll('li', { 'class': 'event-box' })]
+  return [index_event(event) for event in html.findAll('div', { 'class': 'portfolio-item event-isotope' })]
 
-  return [{
-    'label': event_links[0].string.strip() + '  [COLOR mediumslateblue]' + event_links[2].string.strip() + '[/COLOR]',
-    'path': plugin.url_for('show_presentations', conference=event_links[0]['href'][event_links[0]['href'].rfind('/')+1:]),
-    'icon': event_links[1].findAll('img')[0]['src'],
-  } for event_links in events]
+def index_event(event):
+  event_img = event.find('div', { 'class': 'event-img' })
+
+  label = event_img.find('p').contents[-1].strip() + '  [COLOR mediumslateblue]' + event.find('h4', { 'class': 'event-box' }).string.replace('\n', ' ').strip() + '[/COLOR]'
+  path = plugin.url_for('show_presentations', conference=event.findAll('a')[-1]['href'][event.findAll('a')[-1]['href'].rfind('/')+1:])
+  icon = event.find('img', { 'class': 'img-responsive' })['src']
+
+  return { 'label': label, 'path': path, 'icon': icon }
 
 
 @plugin.route('/conferences/<conference>/')
@@ -44,17 +47,17 @@ def show_videos(presentation):
   html = htmlify(full_url('videos/' + presentation))
 
   # Try linked video files
-  events = html.find('div', { 'class': 'video-details' }).findAll('a')
+  #events = html.find('div', { 'class': 'video-details' }).findAll('a')
 
-  if events:
-    return [{
-      'label': event.string.strip(),
-      'path': event['href'],
-      'is_playable': True
-    } for event in events]
+  #if events:
+  #  return [{
+  #    'label': event.string.strip(),
+  #    'path': event['href'],
+  #    'is_playable': True
+  #  } for event in events]
 
   # Try Vimeo source
-  iframe_src = html.find('div', { 'class': 'video-frame' }).find('iframe')['src']
+  iframe_src = html.find('div', { 'class': 'video-container' }).find('iframe')['src']
   vimeo_match = re.search(r'.*player\.vimeo\.com/video/(\d+).*', iframe_src)
 
   if vimeo_match:
