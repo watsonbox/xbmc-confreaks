@@ -4,7 +4,7 @@ import sys, os
 import unittest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../..'))
 
-from addon import plugin, index, show_presentations, show_videos, htmlify, full_url
+from addon import plugin, index, show_presentations, show_videos
 
 class IntegrationTests(unittest.TestCase):
 
