@@ -14,9 +14,9 @@ class IntegrationTests(unittest.TestCase):
     # There are 22 presentations for ArrrrCamp 2013
     self.assertEqual(len(items), 22)
 
-    # The first is 'You gotta try this'
-    self.assertEqual(items[0], {
-      'label': u'You gotta try this  [COLOR mediumslateblue]Avdi  Grimm[/COLOR]',
+    # The eighth is 'You gotta try this'
+    self.assertEqual(items[8], {
+      'label': u'You gotta try this  [COLOR mediumslateblue]Avdi Grimm[/COLOR]',
       'path': 'plugin://plugin.video.confreaks/presentations/arrrrcamp2013-you-gotta-try-this/'
     })
 

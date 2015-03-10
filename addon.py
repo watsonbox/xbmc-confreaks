@@ -30,13 +30,10 @@ def index():
 
 @plugin.route('/conferences/<conference>/')
 def show_presentations(conference):
-  html = htmlify(full_url('events/' + conference))
-  events = [event.findAll('a') for event in html.findAll('div', { 'class': 'video' })]
-
   return [{
-    'label': event_links[1].string.strip() + '  [COLOR mediumslateblue]' + (event_links[2].string.strip() if len(event_links) > 2 else '') + '[/COLOR]',
-    'path': plugin.url_for('show_videos', presentation=event_links[1]['href'][event_links[1]['href'].rfind('/')+1:])
-  } for event_links in events]
+    'label': video.title + '  [COLOR mediumslateblue]' + video.presenter_names() + '[/COLOR]',
+    'path': plugin.url_for('show_videos', presentation=video.slug)
+  } for video in Router.videos(conference)]
 
 
 @plugin.route('/presentations/<presentation>/')

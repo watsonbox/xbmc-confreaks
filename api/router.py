@@ -6,10 +6,11 @@ from video import Video
 
 class Router(object):
   @classmethod
-  def events(self):
+  def events(cls):
     response = urllib2.urlopen('http://www.confreaks.tv/api/v1/events.json?sort=recent')
     return [Event(event) for event in json.load(response)]
 
-  def videos(self, event_short_code):
-    response = urllib2.urlopen('http://www.confreaks.tv/api/v1/events/%s/videos.json?sort=recent'.format(event_short_code))
+  @classmethod
+  def videos(cls, event_short_code):
+    response = urllib2.urlopen('http://www.confreaks.tv/api/v1/events/%s/videos.json?sort=recent' % event_short_code)
     return [Video(video) for video in json.load(response)]
