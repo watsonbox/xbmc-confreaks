@@ -4,6 +4,9 @@ from xbmcswift2 import Plugin
 from xbmcswift2 import download_page
 from BeautifulSoup import BeautifulSoup as BS
 
+from api.router import Router
+from api.event import Event
+
 PLUGIN_NAME = 'Confreaks'
 PLUGIN_ID = 'plugin.video.confreaks'
 
@@ -18,17 +21,11 @@ def full_url(path):
 
 @plugin.route('/')
 def index():
-  html = htmlify(full_url('events'))
-  return [index_event(event) for event in html.findAll('div', { 'class': 'portfolio-item event-isotope' })]
-
-def index_event(event):
-  event_img = event.find('div', { 'class': 'event-img' })
-
-  label = event_img.find('p').contents[-1].strip() + '  [COLOR mediumslateblue]' + event.find('h4', { 'class': 'event-box' }).string.replace('\n', ' ').strip() + '[/COLOR]'
-  path = plugin.url_for('show_presentations', conference=event.findAll('a')[-1]['href'][event.findAll('a')[-1]['href'].rfind('/')+1:])
-  icon = event.find('img', { 'class': 'img-responsive' })['src']
-
-  return { 'label': label, 'path': path, 'icon': icon }
+  return [{
+    'label': event.name() + '  [COLOR mediumslateblue]' + event.pretty_start() + ' - ' + event.pretty_end() + '[/COLOR]',
+    'path': plugin.url_for('show_presentations', conference=event.code()),
+    #'icon': ''
+  } for event in Router.events()]
 
 
 @plugin.route('/conferences/<conference>/')
@@ -45,16 +42,6 @@ def show_presentations(conference):
 @plugin.route('/presentations/<presentation>/')
 def show_videos(presentation):
   html = htmlify(full_url('videos/' + presentation))
-
-  # Try linked video files
-  #events = html.find('div', { 'class': 'video-details' }).findAll('a')
-
-  #if events:
-  #  return [{
-  #    'label': event.string.strip(),
-  #    'path': event['href'],
-  #    'is_playable': True
-  #  } for event in events]
 
   # Try Vimeo source
   iframe_src = html.find('div', { 'class': 'video-container' }).find('iframe')['src']
