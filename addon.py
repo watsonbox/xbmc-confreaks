@@ -12,7 +12,7 @@ plugin = Plugin(PLUGIN_NAME, PLUGIN_ID, __file__)
 @plugin.route('/')
 def index():
   return [{
-    'label': event.name() + '  [COLOR mediumslateblue]' + event.pretty_start() + ' - ' + event.pretty_end() + '[/COLOR]',
+    'label': event.name() + '  [COLOR mediumslateblue]' + event.pretty_range() + '[/COLOR]',
     'path': plugin.url_for('show_videos', event_code=event.code()),
     #'icon': ''
   } for event in Router.events()]

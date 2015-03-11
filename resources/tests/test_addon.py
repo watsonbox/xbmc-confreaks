@@ -37,6 +37,7 @@ class IntegrationTests(unittest.TestCase):
   def test_index(self):
     items = index()
     rubyConf2014 = [i for i in items if i['path'] == "plugin://plugin.video.confreaks/events/rubyconf2014/"][0]
+    gardenCityRuby2015 = [i for i in items if i['path'] == "plugin://plugin.video.confreaks/events/gardencityrb2015/"][0]
 
     # There should be more than 150 events in total
     self.assertTrue(len(items) > 150)
@@ -46,6 +47,12 @@ class IntegrationTests(unittest.TestCase):
       'label': u'Ruby Conference 2014  [COLOR mediumslateblue]Nov 17 - Nov 19[/COLOR]',
       'path': 'plugin://plugin.video.confreaks/events/rubyconf2014/',
       #'icon': u'http://s3-us-west-2.amazonaws.com/confreaks-tv3/production/events/logos/000/000/225/rubyconf-website-small-thumb.png?1422307583',
+    })
+
+    # Ensure Garden City Ruby 2015 data is correct
+    self.assertEqual(gardenCityRuby2015, {
+      'label': u'Garden City Ruby 2015  [COLOR mediumslateblue]Jan 10[/COLOR]',
+      'path': 'plugin://plugin.video.confreaks/events/gardencityrb2015/'
     })
 
 
