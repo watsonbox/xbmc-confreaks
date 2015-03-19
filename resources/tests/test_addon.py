@@ -15,7 +15,7 @@ class IntegrationTests(unittest.TestCase):
     self.assertEqual(len(items), 22)
 
     # The eighth is 'You gotta try this'
-    self.assertEqual(items[8], {
+    self.assertEqual(items[7], {
       'is_playable': True,
       'label': u'You gotta try this  [COLOR mediumslateblue]Avdi Grimm[/COLOR]',
       'path': 'plugin://plugin.video.youtube/?action=play_video&videoid=sVd4p6oKeUA'
@@ -27,7 +27,7 @@ class IntegrationTests(unittest.TestCase):
 
     # 'Application Cache Douchebag' has a Vimeo video
     self.assertTrue(len(items) == 17)
-    self.assertEqual(items[0], {
+    self.assertEqual(items[2], {
       'is_playable': True,
       'label': 'The JavaScript Virtual Machine  [COLOR mediumslateblue]Dave Herman[/COLOR]',
       'path': 'plugin://plugin.video.vimeo/?action=play_video&videoid=43380479'
