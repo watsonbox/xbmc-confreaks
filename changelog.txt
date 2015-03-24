@@ -6,3 +6,6 @@
  - Add conference dates in event index
  - Add conference images to events
  - Add presenters to conferences
+
+1.0.0 (24.03.2015)
+ - Use new Confreaks API instead of scraping website
