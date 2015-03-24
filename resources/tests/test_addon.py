@@ -11,11 +11,8 @@ class IntegrationTests(unittest.TestCase):
   def test_show_youtube_videos(self):
     items = show_videos('arrrrcamp2013')
 
-    # There are 22 presentations for ArrrrCamp 2013
     self.assertEqual(len(items), 22)
-
-    # The eighth is 'You gotta try this'
-    self.assertEqual(items[13], {
+    self.assertEqual([v for v in items if "Avdi Grimm" in v['label']][0], {
       'is_playable': True,
       'label': u'You gotta try this  [COLOR mediumslateblue]Avdi Grimm[/COLOR]',
       'path': 'plugin://plugin.video.youtube/?action=play_video&videoid=sVd4p6oKeUA'
@@ -25,9 +22,8 @@ class IntegrationTests(unittest.TestCase):
   def test_show_vimeo_videos(self):
     items = show_videos('webrebels2012')
 
-    # 'Application Cache Douchebag' has a Vimeo video
     self.assertTrue(len(items) == 17)
-    self.assertEqual(items[3], {
+    self.assertEqual([v for v in items if "Dave Herman" in v['label']][0], {
       'is_playable': True,
       'label': 'The JavaScript Virtual Machine  [COLOR mediumslateblue]Dave Herman[/COLOR]',
       'path': 'plugin://plugin.video.vimeo/?action=play_video&videoid=43380479'
