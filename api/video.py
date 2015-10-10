@@ -12,3 +12,6 @@ class Video(object):
 
   def url(self):
     return 'plugin://plugin.video.%s/?action=play_video&videoid=%s' % (self.host, self.embed_code)
+
+  def is_available(self):
+    return True if self.embed_code else False
