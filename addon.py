@@ -24,7 +24,7 @@ def show_videos(event_code):
     'label': video.title + '  [COLOR mediumslateblue]' + video.presenter_names() + '[/COLOR]',
     'path': video.url(),
     'is_playable': True
-  } for video in Router.videos(event_code)]
+  } for video in Router.videos(event_code) if video.is_available()]
 
 
 if __name__ == '__main__':
