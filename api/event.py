@@ -1,4 +1,5 @@
 from datetime import datetime, date
+import time
 
 DATETIME_FORMAT = '%Y-%m-%dT%H:%M:%S.000Z'
 
@@ -7,8 +8,14 @@ class Event(object):
     self.display_name = json['display_name']
     self.short_code = json['short_code']
     self.conference = json['conference']
-    self.start_at = datetime.strptime(json['start_at'], DATETIME_FORMAT)
-    self.end_at = datetime.strptime(json['end_at'], DATETIME_FORMAT)
+    self.start_at = self.parse_date(json['start_at'])
+    self.end_at = self.parse_date(json['end_at'])
+
+  def parse_date(self, date_string):
+    try:
+      return datetime.strptime(date_string, DATETIME_FORMAT)
+    except TypeError:
+      return datetime(*(time.strptime(date_string, DATETIME_FORMAT)[0:6]))
 
   # Format start date e.g. 'Jan 10'
   def pretty_start(self):
